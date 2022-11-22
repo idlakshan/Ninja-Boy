@@ -6,10 +6,11 @@
      height: 100vh;
      background-image: url("../images/Background.jpg");
      background-size: cover;
+    background-repeat: repeat-x;
 
 }
 .ninja{
     height: 270px;
-    margin-top: 375px;
+    margin-top: 425px;
     position: absolute;
 }
