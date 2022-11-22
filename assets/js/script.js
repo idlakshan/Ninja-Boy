@@ -1,7 +1,7 @@
 var boy=$("#boy");
 
 /*--------------------character breathing---------------------------------------*/
-var idlImgNum=0;
+var idlImgNum=1;
 var idlAnimationNum=0;
 
 function breathingNinja(){
@@ -22,7 +22,7 @@ function breathingNinja(){
  }
 
 /*--------------------character running---------------------------------------*/
-var runImgNum=0;
+var runImgNum=1;
 var runAnimationNum=0;
 
 
@@ -45,16 +45,29 @@ function runAnimationStart(){
 
 function keyCheck(event){
     //alert(event.which)
-   // enter=13
+    //enter=13
+    //space=32
+
     var keyCode=event.which
     if(keyCode==13){
         if (runAnimationNum==0){
             runAnimationStart();
         }
+        if(moveBackgroundId==0){
+            moveBackgroundId=setInterval(moveBackground,100)
+        }
     }
-    if(moveBackgroundId==0){
-        moveBackgroundId=setInterval(moveBackground,100)
+    if(keyCode==32){
+        if (jumpAnimationNum==0){
+            jumpAnimationStart();
+        }
+        if(moveBackgroundId==0){
+            moveBackgroundId=setInterval(moveBackground,100)
+        }
+
+
     }
+
 }
     var backgroundPositionX=0;
     var moveBackgroundId=0;
@@ -62,4 +75,43 @@ function keyCheck(event){
 function moveBackground(){
     backgroundPositionX=backgroundPositionX-20;
     $("#background").css({backgroundPositionX:backgroundPositionX+"px"})
+}
+
+/*--------------------character jumping---------------------------------------*/
+var jumpImgNum=1;
+var jumpAnimationNum=0;
+var boyMarginTop=350;
+
+
+function jumpNinja(){
+    jumpImgNum=jumpImgNum+1;
+
+    if(jumpImgNum<=6){
+        boyMarginTop=boyMarginTop-40;
+        boy.css({marginTop:boyMarginTop+"px"});
+    }
+    if(jumpImgNum>=7){
+        boyMarginTop=boyMarginTop+40;
+        boy.css({marginTop:boyMarginTop+"px"});
+    }
+
+    if(jumpImgNum==11){
+        jumpImgNum=1;
+        clearInterval(jumpAnimationNum);
+        jumpAnimationNum=0;
+        runImgNum=0;
+        runAnimationStart();
+    }
+
+
+    boy.attr('src','assets/images/Jump('+jumpImgNum+').png')
+}
+
+
+function jumpAnimationStart(){
+    clearInterval(idlAnimationNum);
+    runImgNum=0;
+    clearInterval(runAnimationNum);
+    jumpAnimationNum=setInterval(jumpNinja,100);
+
 }
