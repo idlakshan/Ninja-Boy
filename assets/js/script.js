@@ -118,7 +118,7 @@ function jumpAnimationStart(){
 
 /*--------------------traffic---------------------------------------*/
 
-var boxMarginLeft=1640;
+var boxMarginLeft=500;
 
 function createBoxes() {
 
@@ -129,7 +129,7 @@ function createBoxes() {
         document.getElementById("background").appendChild(box);
         box.style.marginLeft = boxMarginLeft + "px";
 
-        boxMarginLeft = boxMarginLeft + 1000;
+        //boxMarginLeft = boxMarginLeft + 1000;
 
         if (i < 5) {
             boxMarginLeft = boxMarginLeft + 500;
