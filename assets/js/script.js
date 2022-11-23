@@ -115,3 +115,46 @@ function jumpAnimationStart(){
     jumpAnimationNum=setInterval(jumpNinja,100);
 
 }
+
+/*--------------------traffic---------------------------------------*/
+
+var boxMarginLeft=1640;
+
+function createBoxes() {
+
+    for (var i = 0; i <= 10; i++) {
+
+        var box = document.createElement("div");
+        box.className = "box";
+        document.getElementById("background").appendChild(box);
+        box.style.marginLeft = boxMarginLeft + "px";
+
+        boxMarginLeft = boxMarginLeft + 1000;
+
+        if (i < 5) {
+            boxMarginLeft = boxMarginLeft + 500;
+        }
+        if (i >= 5) {
+            boxMarginLeft = boxMarginLeft + 250;
+
+        }
+        /*  $("<div/>",{
+                         "class":"box",
+                     }).appendTo("#background")
+
+                     $(".box").css({marginLeft:boxMarginLeft+"px"});
+
+                     boxMarginLeft=boxMarginLeft+500;*/
+
+
+        //boxMarginLeft=boxMarginLeft+500;
+        /* if (i<5){
+             boxMarginLeft=boxMarginLeft+500;
+         }
+         if (i>=5){
+             boxMarginLeft=boxMarginLeft+250;
+         }*/
+
+
+    }
+}
