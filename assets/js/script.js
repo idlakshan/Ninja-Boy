@@ -56,6 +56,9 @@ function keyCheck(event){
         if(moveBackgroundId==0){
             moveBackgroundId=setInterval(moveBackground,100)
         }
+        if(boxAnimationId==0){
+            boxAnimationId=setInterval(boxAnimation,100)
+        }
     }
     if(keyCode==32){
         if (jumpAnimationNum==0){
@@ -63,6 +66,9 @@ function keyCheck(event){
         }
         if(moveBackgroundId==0){
             moveBackgroundId=setInterval(moveBackground,100)
+        }
+        if(boxAnimationId==0){
+            boxAnimationId=setInterval(boxAnimation,100)
         }
 
 
@@ -118,43 +124,45 @@ function jumpAnimationStart(){
 
 /*--------------------traffic---------------------------------------*/
 
-var boxMarginLeft=500;
+var boxMarginLeft=1400;
 
 function createBoxes() {
 
-    for (var i = 0; i <= 10; i++) {
+
+    for(var i = 0; i <= 10; i++) {
 
         var box = document.createElement("div");
         box.className = "box";
         document.getElementById("background").appendChild(box);
         box.style.marginLeft = boxMarginLeft + "px";
+        box.id="box"+i;
+        console.log(box.id)
 
         //boxMarginLeft = boxMarginLeft + 1000;
 
         if (i < 5) {
-            boxMarginLeft = boxMarginLeft + 500;
+            boxMarginLeft = boxMarginLeft + 1000;
         }
         if (i >= 5) {
-            boxMarginLeft = boxMarginLeft + 250;
+            boxMarginLeft = boxMarginLeft + 500;
 
         }
-        /*  $("<div/>",{
-                         "class":"box",
-                     }).appendTo("#background")
-
-                     $(".box").css({marginLeft:boxMarginLeft+"px"});
-
-                     boxMarginLeft=boxMarginLeft+500;*/
-
-
-        //boxMarginLeft=boxMarginLeft+500;
-        /* if (i<5){
-             boxMarginLeft=boxMarginLeft+500;
-         }
-         if (i>=5){
-             boxMarginLeft=boxMarginLeft+250;
-         }*/
 
 
     }
+}
+var boxAnimationId=0;
+
+function boxAnimation(){
+
+    for (var i=0;i<10;i++){
+        var box=document.getElementById("box"+i);
+        console.log(box);
+        var currentMarginLeft=window.getComputedStyle(box).marginLeft;
+        //console.log(currentMarginLeft)
+        var newMarginLeft=parseInt(currentMarginLeft)-25;
+        box.style.marginLeft=newMarginLeft+"px";
+
+    }
+
 }
