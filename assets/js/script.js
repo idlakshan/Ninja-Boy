@@ -37,7 +37,7 @@ function runningNinja(){
 }
 
 function runAnimationStart(){
-    runAnimationNum=setInterval(runningNinja,120)
+    runAnimationNum=setInterval(runningNinja,100)
     clearInterval(idlAnimationNum)
 
 }
@@ -93,11 +93,11 @@ function jumpNinja(){
     jumpImgNum=jumpImgNum+1;
 
     if(jumpImgNum<=6){
-        boyMarginTop=boyMarginTop-40;
+        boyMarginTop=boyMarginTop-35;
         boy.css({marginTop:boyMarginTop+"px"});
     }
     if(jumpImgNum>=7){
-        boyMarginTop=boyMarginTop+40;
+        boyMarginTop=boyMarginTop+35;
         boy.css({marginTop:boyMarginTop+"px"});
     }
 
@@ -118,13 +118,13 @@ function jumpAnimationStart(){
     clearInterval(idlAnimationNum);
     runImgNum=0;
     clearInterval(runAnimationNum);
-    jumpAnimationNum=setInterval(jumpNinja,100);
+    jumpAnimationNum=setInterval(jumpNinja,130);
 
 }
 
 /*--------------------traffic---------------------------------------*/
 
-var boxMarginLeft=1400;
+var boxMarginLeft=1540;
 
 function createBoxes() {
 
@@ -141,10 +141,10 @@ function createBoxes() {
         //boxMarginLeft = boxMarginLeft + 1000;
 
         if (i < 5) {
-            boxMarginLeft = boxMarginLeft + 1000;
+            boxMarginLeft = boxMarginLeft + 2000;
         }
         if (i >= 5) {
-            boxMarginLeft = boxMarginLeft + 500;
+            boxMarginLeft = boxMarginLeft + 1000;
 
         }
 
@@ -160,9 +160,44 @@ function boxAnimation(){
         console.log(box);
         var currentMarginLeft=window.getComputedStyle(box).marginLeft;
         //console.log(currentMarginLeft)
-        var newMarginLeft=parseInt(currentMarginLeft)-25;
+        var newMarginLeft=parseInt(currentMarginLeft)-35;
         box.style.marginLeft=newMarginLeft+"px";
+
+        if(newMarginLeft>=-110 & newMarginLeft <=100){
+            if (boyMarginTop>300){
+                clearInterval(boxAnimationId);
+
+
+                clearInterval(runAnimationNum);
+                runAnimationNum=-1;
+
+                clearInterval(jumpAnimationNum);
+                jumpAnimationNum=-1;
+
+                clearInterval(moveBackgroundId);
+                moveBackgroundId=-1
+
+                deathAnimationNum=setInterval(deathNinja,100);
+
+            }
+        }
 
     }
 
+}
+
+
+/*--------------------Death Ninja---------------------------------------*/
+var deathImgNum=1;
+var deathAnimationNum=0
+
+function deathNinja(){
+        deathImgNum=deathImgNum+1;
+
+        if(deathImgNum==11){
+            deathImgNum=10;
+
+        }
+        
+    boy.attr('src','assets/images/Dead('+deathImgNum+').png')
 }

@@ -14,15 +14,15 @@
 
 }
 .ninja{
-    height: 330px;
-    margin-top: 355px;
+    height: 300px;
+    margin-top: 375px;
     position: absolute;
 }
 .box{
-    width:280px;
-    height: 280px;
+    width:200px;
+    height: 200px;
     position: absolute;
-    margin-top: 465px;
+    margin-top: 525px;
     background-image: url("../gif/fire.gif");
     background-size: contain;
     background-repeat: no-repeat;
