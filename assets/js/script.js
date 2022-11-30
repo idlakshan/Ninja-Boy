@@ -37,7 +37,7 @@ function runningNinja(){
 }
 
 function runAnimationStart(){
-    runAnimationNum=setInterval(runningNinja,100)
+    runAnimationNum=setInterval(runningNinja,80)
     clearInterval(idlAnimationNum)
 
 }
@@ -78,26 +78,33 @@ function keyCheck(event){
     var backgroundPositionX=0;
     var moveBackgroundId=0;
 
+    var score=0;
+
+
 function moveBackground(){
     backgroundPositionX=backgroundPositionX-20;
-    $("#background").css({backgroundPositionX:backgroundPositionX+"px"})
+    $("#background").css({backgroundPositionX:backgroundPositionX+"px"});
+    score=score+1;
+    $("#nScore").html("Score : "+score);
+    //document.getElementById("nScore").innerHTML=score;
+    console.log(score)
 }
 
 /*--------------------character jumping---------------------------------------*/
 var jumpImgNum=1;
 var jumpAnimationNum=0;
-var boyMarginTop=350;
+var boyMarginTop=400;
 
 
 function jumpNinja(){
     jumpImgNum=jumpImgNum+1;
 
     if(jumpImgNum<=6){
-        boyMarginTop=boyMarginTop-35;
+        boyMarginTop=boyMarginTop-45;
         boy.css({marginTop:boyMarginTop+"px"});
     }
     if(jumpImgNum>=7){
-        boyMarginTop=boyMarginTop+35;
+        boyMarginTop=boyMarginTop+45;
         boy.css({marginTop:boyMarginTop+"px"});
     }
 
@@ -118,13 +125,13 @@ function jumpAnimationStart(){
     clearInterval(idlAnimationNum);
     runImgNum=0;
     clearInterval(runAnimationNum);
-    jumpAnimationNum=setInterval(jumpNinja,130);
+    jumpAnimationNum=setInterval(jumpNinja,140);
 
 }
 
 /*--------------------traffic---------------------------------------*/
 
-var boxMarginLeft=1540;
+var boxMarginLeft=1640;
 
 function createBoxes() {
 
@@ -167,7 +174,6 @@ function boxAnimation(){
             if (boyMarginTop>300){
                 clearInterval(boxAnimationId);
 
-
                 clearInterval(runAnimationNum);
                 runAnimationNum=-1;
 
@@ -198,6 +204,8 @@ function deathNinja(){
             deathImgNum=10;
 
         }
-        
+
     boy.attr('src','assets/images/Dead('+deathImgNum+').png')
 }
+
+
