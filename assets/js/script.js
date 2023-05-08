@@ -19,6 +19,7 @@ function breathingNinja(){
 }
  function breathStart(){
      idlAnimationNum=setInterval(breathingNinja,200)
+
  }
 
 /*--------------------character running---------------------------------------*/
@@ -39,6 +40,9 @@ function runningNinja(){
 function runAnimationStart(){
     runAnimationNum=setInterval(runningNinja,80)
     clearInterval(idlAnimationNum)
+   backgroundSound();
+
+
 
 }
 
@@ -52,6 +56,7 @@ function keyCheck(event){
     if(keyCode==13){
         if (runAnimationNum==0){
             runAnimationStart();
+
         }
         if(moveBackgroundId==0){
             moveBackgroundId=setInterval(moveBackground,100)
@@ -70,16 +75,12 @@ function keyCheck(event){
         if(boxAnimationId==0){
             boxAnimationId=setInterval(boxAnimation,100)
         }
-
-
     }
-
 }
     var backgroundPositionX=0;
     var moveBackgroundId=0;
 
     var score=0;
-
 
 function moveBackground(){
     backgroundPositionX=backgroundPositionX-20;
@@ -106,6 +107,7 @@ function jumpNinja(){
     if(jumpImgNum>=7){
         boyMarginTop=boyMarginTop+45;
         boy.css({marginTop:boyMarginTop+"px"});
+
     }
 
     if(jumpImgNum==11){
@@ -116,7 +118,6 @@ function jumpNinja(){
         runAnimationStart();
     }
 
-
     boy.attr('src','assets/images/Jump('+jumpImgNum+').png')
 }
 
@@ -126,6 +127,7 @@ function jumpAnimationStart(){
     runImgNum=0;
     clearInterval(runAnimationNum);
     jumpAnimationNum=setInterval(jumpNinja,140);
+    jumpSound();
 
 }
 
@@ -134,7 +136,6 @@ function jumpAnimationStart(){
 var boxMarginLeft=1640;
 
 function createBoxes() {
-
 
     for(var i = 0; i <= 10; i++) {
 
@@ -154,8 +155,6 @@ function createBoxes() {
             boxMarginLeft = boxMarginLeft + 1000;
 
         }
-
-
     }
 }
 var boxAnimationId=0;
@@ -187,11 +186,8 @@ function boxAnimation(){
 
             }
         }
-
     }
-
 }
-
 
 /*--------------------Death Ninja---------------------------------------*/
 var deathImgNum=1;
@@ -207,5 +203,32 @@ function deathNinja(){
 
     boy.attr('src','assets/images/Dead('+deathImgNum+').png')
 }
+
+
+
+/*--------------Jump sound---------------*/
+function jumpSound(){
+    let jumpNinja=new Audio("assets/sounds/jumpNew.mp3");
+    jumpNinja.play();
+
+}
+
+
+/*--------------Run sound---------------*/
+
+function runningSound(){
+    let ninjaRunning=new Audio("assets/sounds/running.mp3")
+    ninjaRunning.play();
+}
+
+
+/*--------------Background sound---------------*/
+function backgroundSound(){
+    let backgroundSound=new Audio("assets/sounds/jungle.mp3")
+    backgroundSound.play();
+}
+
+
+
 
 
